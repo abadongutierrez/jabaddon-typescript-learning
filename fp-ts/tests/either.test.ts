@@ -36,4 +36,22 @@ describe('Testing Either', () => {
       expect(valueOrDefault).toBe(actualValue);
     });
   });
+
+  describe('Is Right', () => {
+    test('get right side', () => {
+      const either = E.right(1);
+      if (E.isRight(either)) {
+        expect(either.right).toBe(1);
+      }
+    })
+  });
+
+  describe('Is Left', () => {
+    test('get left side', () => {
+      const either = E.left<Error, number>(new Error());
+      if (E.isLeft(either)) {
+        expect(either.left).toBeInstanceOf(Error);
+      }
+    });
+  })
 });
